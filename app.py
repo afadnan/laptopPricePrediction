@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
+import pandas as pd
 
 # import the model
 pipe = pickle.load(open('pipe.pkl','rb'))
@@ -37,15 +38,14 @@ cpu = st.selectbox('CPU',df['Cpu brand'].unique())
 
 hdd = st.selectbox('HDD(in GB)',[0,128,256,512,1024,2048])
 
-ssd = st.selectbox('SSD(in GB)',[0,8,128,256,512,1024])
+ssd = st.selectbox('SSD(in GB)',[0,128,256,512,1024])
 
 gpu = st.selectbox('GPU',df['Gpu brand'].unique())
 
 os = st.selectbox('OS',df['os'].unique())
 
 if st.button('Predict Price'):
-    # query
-    ppi = None
+    # Convert 'Yes'/'No' to 1/0
     if touchscreen == 'Yes':
         touchscreen = 1
     else:
@@ -56,10 +56,26 @@ if st.button('Predict Price'):
     else:
         ips = 0
 
+    # Calculate PPI
     X_res = int(resolution.split('x')[0])
     Y_res = int(resolution.split('x')[1])
-    ppi = ((X_res**2) + (Y_res**2))**0.5/screen_size
-    query = np.array([company,type,ram,weight,touchscreen,ips,ppi,cpu,hdd,ssd,gpu,os])
+    ppi = ((X_res**2) + (Y_res**2))**0.5 / screen_size
 
-    query = query.reshape(1,12)
-    st.title("The predicted price of this configuration is " + str(int(np.exp(pipe.predict(query)[0]))))
+    # Create a DataFrame from the inputs
+    query = pd.DataFrame({
+        'Company': [company],
+        'TypeName': [type],
+        'Ram': [ram],
+        'Weight': [weight],
+        'Touchscreen': [touchscreen],
+        'Ips': [ips],
+        'ppi': [ppi],
+        'Cpu brand': [cpu],
+        'HDD': [hdd],
+        'SSD': [ssd],
+        'Gpu brand': [gpu],
+        'os': [os]
+    })
+
+    prediction = int(np.exp(pipe.predict(query)[0]))
+    st.title(f"Predicted Price: ₹{prediction:,}")
