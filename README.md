@@ -83,10 +83,10 @@ A systematic approach was taken to select, train, and evaluate the best-performi
 
 * Mean Absolute Error (MAE): 85.50 (INR)
 
-⚙️ How to Run Locally
-To run this project on your local machine, please follow the steps below. The instructions assume you have Python 3.12+ and pip installed.
+## ⚙️ How to Run Locally
+To run this project on your local machine, please follow the steps below. The instructions assume you have Python 3.11+ and pip installed.
 
-### Clone the repository:
+Clone the repository:
 
 Create and activate a virtual environment (Recommended):
 Using a virtual environment is a best practice to manage project dependencies and avoid conflicts.
@@ -99,17 +99,21 @@ This command will start a local web server and open the application in your defa
 
 You can then access the application at http://localhost:8501.
 
-### 🖼️ Application Showcase
+## 🖼️ Application Showcase
 The following screenshots provide a visual tour of the application's user interface and functionality. They serve as a quick preview for those who may not run the live demo.
 
 Application User Interface
 This shows the main interface with all the input fields a user can configure to specify their desired laptop.
 
+![demo](demo/Screenshot-01.png)
+
 Example Prediction Result
 This screenshot captures the application after a user has entered their specifications and received a price prediction from the model.
 
+![demo](demo/Screenshot-02.png)
 
-### 🤝 How to Contribute
+
+## 🤝 How to Contribute
 Contributions, issues, and feature requests are welcome! If you have suggestions for improvement, please feel free to open an issue or submit a pull request on GitHub.
 
 
