@@ -81,7 +81,7 @@ A systematic approach was taken to select, train, and evaluate the best-performi
 
 * R² Score: 0.89
 
-* Mean Absolute Error (MAE): 85.50 (INR)
+* Mean Absolute Error (MAE): 16%
 
 ## ⚙️ How to Run Locally
 To run this project on your local machine, please follow the steps below. The instructions assume you have Python 3.11+ and pip installed.
